@@ -1,0 +1,60 @@
+@import '~@angular/material/theming';
+
+.mat-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+.drop-area {
+    min-height: 100vh;
+}
+.drop-message {
+    display: none;
+    padding: 20px 10px 20px 10px;
+    width: 320px;
+    min-height: 20px;
+    bottom: 20px;
+    background-color: white;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0px auto;
+    z-index: 1;
+    @include mat-elevation(2);
+}
+.fileover {
+    border: 1px solid #00bcd4;
+    background-color: #b2ebf2;
+    .drop-message {
+        display: block;
+    }
+}
+.file-input {
+    display: none;
+}
+
+.mat-list-item {
+    cursor: pointer;
+}
+
+.image {
+    color: #e91e63;
+}
+.picture_as_pdf {
+    color: #c62828;
+}
+.chrome_reader_mode {
+    color: #ffb300;
+}
+.description {
+    color: #2196f3;
+}
+.insert_drive_file {
+    color: #2196f3;
+}
+.assessment {
+    color: #4caf50;
+}
+.work {
+    color: #607d8b;
+}

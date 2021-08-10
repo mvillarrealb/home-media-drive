@@ -1,0 +1,36 @@
+@import '../../../theme.scss';
+
+.mat-form-field {
+  width: 100%;
+  min-width: 320px;
+  margin: 1% 0px 1% 0px;
+}
+
+.parent {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-card-actions {
+  .mat-button {
+    width: 120px;
+  }
+  .register {
+    float: right;
+  }
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: $error;
+}
+
+.loading-indicator {
+  height: 60px;
+}
+
+.mat-progress-bar {
+  width: 85%;
+}

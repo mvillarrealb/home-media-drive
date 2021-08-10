@@ -1,0 +1,14 @@
+.drive-gallery {
+    padding: 0px;
+    margin: 1% 20px 0px 20px;
+    display: grid;
+    gap: 2rem;
+    grid-auto-rows: 5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+}
+
+.mat-card {
+    cursor: pointer;
+    width: 95%;
+    height: 95%;
+}

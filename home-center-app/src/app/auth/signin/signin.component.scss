@@ -1,0 +1,47 @@
+@import '../../../theme.scss';
+
+.mat-form-field,
+.panel-buttons {
+  width: 99%;
+  min-width: 300px;
+  margin: 1% 0px 1% 0px;
+}
+
+.mat-card-actions {
+  .mat-button {
+    width: 120px;
+  }
+  .back {
+    float: right;
+  }
+}
+
+.button-panel {
+  display: column;
+  justify-content: center;
+}
+
+.parent {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: $error;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.loading-indicator {
+  height: 60px;
+}
+
+.mat-progress-bar {
+  width: 85%;
+}

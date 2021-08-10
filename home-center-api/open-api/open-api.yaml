@@ -1,0 +1,169 @@
+openapi: "3.0.0"
+info:
+  description: "Home center api used to handle internal minio drive as api based NAS solution"
+  version: "1.0.0"
+  title: "home-center-api"
+servers:
+  - url: http://localhost:8000
+    description: Sandbox Environment
+  - url: https://tasks.cloudintercorpretail.pe
+    description: Production environment
+tags:
+  - name: "accounts"
+    description: "Account Management"
+  - name: "buckets"
+    description: "Bucket Management"
+security:
+  - bearerAuth: []
+paths:
+  /accounts/signin:
+    post:
+      tags:
+        - accounts
+      summary: "Perform login"
+      description: ""
+      operationId: ""
+      parameters:
+        - in: "body"
+          name: ""
+          schema:
+            $ref: "#/components/schemas/Login"
+      responses:
+  /accounts/signup:
+    post:
+      tags:
+        - accounts
+      summary: "Registers into the home drive platform"
+      description: ""
+      operationId: ""
+      parameters:
+        - in: "body"
+          name: ""
+          schema:
+            $ref: "#/components/schemas/Login"
+      responses:
+  /accounts/@me:
+    get:
+      tags:
+        - accounts
+      summary: "Fetch de user profile of the authenticated user"
+      description: ""
+      operationId: ""
+      responses:
+  /accounts/@me/password:
+    post:
+      tags:
+        - accounts
+      summary: "Change the password of the authenticated user"
+      description: ""
+      operationId: ""
+      parameters:
+        - in: "body"
+          name: ""
+          schema:
+      responses:
+components:
+  schemas:
+    Login:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          description: "User email to signin/signup"
+          example: "erick.slayer.m.v@gmail.com"
+        password:
+          type: string
+          description: "Password email to signin/signup"
+          example: "casa1234"
+    Error:
+      type: object
+    Account:
+      type: object
+      properties:
+        accountId:
+          type: string
+          example: "de471247-b12b-4f64-ae75-ab2c877e3e54"
+          description: "Account Unique Identifier"
+        name:
+          type: string
+          example: "Marco"
+          description: "Account ownwer name"
+        lastName:
+          type: string
+          example: "Villarreal"
+          description: "Account owner lastName"
+        email:
+          type: string
+          example: "erick.slayer.m.v@gmail.com"
+          description: "Account owner email"
+        createdAt:
+          type: string
+          description: "Creation Date"
+          example: "2021-08-10T21:44:12.392Z"
+        updatedAt:
+          type: string
+          description: "Update Date"
+          example: "2021-08-10T21:44:12.392Z"
+    Bucket:
+      type: object
+      properties:
+        bucketId:
+          type: string
+          example: "b801bf47f9afcb380a4189ff1b27e36e"
+          description: "Bucket unique identifier(md5 of the bucket name)"
+        name:
+          type: string
+          example: "Vacations"
+          description: "Name of the bucket(must be unique per account)"
+        description:
+          type: string
+          example: ""
+          description: "Bucket description"
+        resources:
+          type: array
+          description: "Resources contained in the bucket"
+          items:
+            $ref: "#/components/schemas/Resource"
+    Resource:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          description: "Resource unique identifier"
+          example: "6b6ea840-1d03-4e5e-9ac5-b4b7bc5401bd"
+        name:
+          type: string
+          description: "File name"
+          example: "WhatsApp Image 2021-07-27 at 5.42.02 PM.jpeg"
+        mimeType:
+          type: string
+          description: "File mime type"
+          example: "image/jpeg"
+        size:
+          type: number
+          description: "File size in bytes"
+          example: 44630
+        fileHash:
+          type: string
+          description: "Calculated md5 of the file content"
+          example: "25cf307acf73b5d62d55bd2edf814e59ec3d4d8ed26e1fc687c3c7ca7984e8c1"
+        href:
+          type: string
+          description: "URI to fetch resource content"
+          example: ""
+        createdAt:
+          type: string
+          description: "Creation Date"
+          example: "2021-08-10T21:44:12.392Z"
+        updatedAt:
+          type: string
+          description: "Update Date"
+          example: "2021-08-10T21:44:12.392Z"
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

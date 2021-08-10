@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-center-api-deploy
+spec:
+  selector:
+    matchLabels:
+      app: home-center-api
+  template:
+    metadata:
+      labels:
+        app: home-center-api
+    spec:
+      containers:
+      - name: home-center-api
+        image: <Image>
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080

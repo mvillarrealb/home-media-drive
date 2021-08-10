@@ -1,0 +1,20 @@
+<h2 mat-dialog-title *ngIf="!isLoading">Carpeta Nueva</h2>
+<h2 mat-dialog-title *ngIf="isLoading">Creando Carpeta...</h2>
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<mat-dialog-content>
+  <div class="dialog-container">
+    <form class="form" [formGroup]="bucketForm" (ngSubmit)="createBucket()">
+      <p>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Nombre de Carpeta" formControlName="bucket">
+          <mat-error *ngIf="bucket.invalid">{{getBucketErrors()}}</mat-error>
+        </mat-form-field>
+      </p>
+      <div class="mat-dialog-actions">
+        <button class="panel-buttons" type="submit" mat-raised-button color="primary" mat-button
+          [disabled]="isLoading">Crear</button>
+        <a class="panel-buttons" mat-raised-button mat-dialog-close mat-button [disabled]="isLoading">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>

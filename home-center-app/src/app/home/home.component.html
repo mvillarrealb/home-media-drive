@@ -1,0 +1,57 @@
+<mat-toolbar class="primary-toolbar" color="primary" role="header">
+    <div>HomeDrive</div>
+    <div style="flex: 1 1 0%;box-sizing: border-box;"></div>
+    <div class="avatar-col" *ngIf="user$ | async as user">
+        <span class="avatar accent-1 large" [mdePopoverTriggerFor]="appPopover" mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">
+            {{extractAvatarText(user.payload.name, user.payload.lastName)}}
+        </span>
+    </div>
+</mat-toolbar>
+<mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false">
+    <mat-card style="max-width: 350px;width:350px;" *ngIf="user$ | async as user">
+        <mat-card-content class="profile">
+            <mat-list>
+                <mat-list-item>
+                    <b>{{user.payload.name}} {{user.payload.lastName}}</b>
+                </mat-list-item>
+                <mat-list-item>
+                    <p>{{user.payload.email}}</p>
+                </mat-list-item>
+            </mat-list>
+            <mat-divider></mat-divider>
+        </mat-card-content>
+        <mat-card-actions class="profile-buttons">
+            <button mat-button on-click="editProfile()">Editar Perfil</button>
+            <button class="logout" mat-button on-click="logout()">Cerrar Sesión</button>
+        </mat-card-actions>
+    </mat-card>
+</mde-popover>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav class="sidenav-nav" mode="side" opened>
+        <button class="new-bucket" mat-raised-button color="accent" on-click="newBucket()">Nuevo</button>
+        <mat-divider></mat-divider>
+        <mat-selection-list #shoes [multiple]="false">
+            <mat-list-option disableRipple="true" on-click="navigate('drive')" [selected]="isActive('drive')">
+                <div class="center-vertically">
+                    <mat-icon>folder</mat-icon>
+                    Mi Unidad
+                </div>
+            </mat-list-option>
+            <mat-list-option disableRipple="true" on-click="navigate('drive/shared')" [selected]="isActive('shared')">
+                <div class="center-vertically">
+                    <mat-icon>folder_shared</mat-icon>
+                    Compartido conmigo
+                </div>
+            </mat-list-option>
+            <mat-list-option disableRipple="true" on-click="navigate('drive/trash')" [selected]="isActive('trash')">
+                <div class="center-vertically">
+                    <mat-icon>delete</mat-icon>
+                    Papelera
+                </div>
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-sidenav>
+    <div class="sidenav-content">
+        <router-outlet></router-outlet>
+    </div>
+</mat-sidenav-container>

@@ -1,0 +1,27 @@
+version: '3.1'
+services:
+  manager_object_storage:
+    image: minio/minio
+    volumes: 
+      - /mnt/minio/data:/data
+    ports:
+      - 9090:9000
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    command: server /data
+  manager_database:
+     image: postgres:12-alpine
+     ports:
+       - 5432:5432
+     volumes:
+       - /mnt/postgres/data:/var/lib/postgresql/data
+     environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: casa1234
+  manager_api:
+      image: home-center-api:1.0.0
+      ports:
+        3000: 3000
+      environment: 
+        NODE_ENV: development

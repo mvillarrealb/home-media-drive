@@ -1,0 +1,40 @@
+<div class="loading-indicator" *ngIf="!isLoading">
+    <h1 align="center">Registrate</h1>
+  </div>
+  
+  <div class="loading-indicator" *ngIf="isLoading">
+    <h1 align="center">Registrando usuario...</h1>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <div class="parent">
+    <form [formGroup]="form" (ngSubmit)="register()" autocomplete="off">
+      <p>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Correo electrónico" formControlName="email">
+          <mat-error *ngIf="email.invalid">{{getEmailErrors()}}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Contraseña" formControlName="password">
+          <mat-error *ngIf="password.invalid">{{getPasswordErrors()}}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Confirmar Contraseña" formControlName="confirmPassword">
+          <mat-error *ngIf="confirmPassword.invalid">{{getPasswordConfirmErrors()}}</mat-error>
+        </mat-form-field>
+      </p>
+      <p *ngIf="error" class="error">
+        {{ error }}
+      </p>
+      <div class="mat-card-actions">
+        <button  type="submit" mat-raised-button color="primary" mat-button
+          [disabled]="isLoading">Registarse</button>
+        <a class="back" mat-raised-button routerLink="/accounts/login" mat-button
+          [disabled]="isLoading">Volver</a>
+      </div>
+    </form>
+  </div>
+  

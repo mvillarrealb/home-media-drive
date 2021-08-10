@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+    <div fxFlex="50px">
+      <button title="Volver" type="button" class="menu-btn" mat-icon-button routerLink="/drive">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+    <span *ngIf="!isLoading"> {{ (bucketContent$ | async)?.name }}</span>
+    <span *ngIf="isLoading">Cargando Archivo...</span>
+    <button [disabled]="!resourceSelected" title="Detalles" type="button" class="menu-btn" mat-icon-button (click)="viewInformation()">
+      <mat-icon>info</mat-icon>
+    </button>
+    <button [disabled]="!resourceSelected" title="Eliminar este archivo" type="button" class="menu-btn" mat-icon-button (click)="deleteResource()">
+      <mat-icon>delete</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<input type="file" multiple class="file-input" (change)="onFileSelected($event)" #fileUpload>
+<div class="drop-area" drop-upload (fileDropped)="onFileDropped($event)">
+  <mat-selection-list [multiple]="false" disableRipple>
+    <mat-list-option *ngFor="let resource of (bucketContent$ | async)?.resources" on-click="handleSelection(resource)">
+      <mat-icon mat-list-icon class="{{ resource.icon }}">{{ resource.icon }}</mat-icon>
+      <div mat-line>{{ resource.name }}</div>
+      <div mat-line>{{ resource.createdAt | date}} </div>
+      <div mat-line>{{ resource.size }} kb</div>
+      <mat-divider></mat-divider>
+    </mat-list-option>
+  </mat-selection-list>
+  <button mat-fab color="primary" [disabled]="isLoading" (click)="fileUpload.click()" aria-label="Cargar nuevo Archivo">
+    <mat-icon>add</mat-icon>
+  </button>
+  <div class="drop-message">
+    Suelta los archivos para cargarlos automáticamente en {{ (bucketContent$ | async)?.name }}
+  </div>
+</div>

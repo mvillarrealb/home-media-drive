@@ -1,0 +1,20 @@
+http:
+  port: 8080
+  rate-limit:
+    ttl: 60
+    limit: 200
+db:
+  host: '127.0.0.1'
+  port: 5432
+  database: 'home_center'
+  username: 'postgres'
+  password: 'casa1234'
+jwt:
+  publicKey: 'casa12334'
+  expiresIn: '1h'
+storage:
+  endPoint: 'play.min.io'
+  port: 9000
+  useSSL: true
+  accessKey: 'Q3AM3UQ867SPQQA43P2F'
+  secretKey: 'zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG'
